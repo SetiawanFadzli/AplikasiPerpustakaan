@@ -19,6 +19,7 @@ class User(QMainWindow):
         self.setWindowIcon(QIcon('ICONS/library_logo.png'))
         self.tampilDataUser()
         self.btnSimpan.clicked.connect(self.simpanDataUser)
+        self.tblUser.clicked.connect(self.tampilDataUserTerpilih)
 
     def tampilPesan(self, pesan):
         msgbox=QMessageBox()
@@ -62,6 +63,7 @@ class User(QMainWindow):
                 self.tblUser.setItem(baris,2,QTableWidgetItem(x[2]))
                 self.tblUser.setItem(baris,3,QTableWidgetItem(x[3]))
                 self.tblUser.setItem(baris,4,QTableWidgetItem(x[4]))
+                self.tblUser.setItem(baris,5,QTableWidgetItem(x[5]))
                 baris=baris+1
         except:
             self.tampilPesan('Terjadi kesalahan pada saat menampilkan data user')
@@ -91,6 +93,31 @@ class User(QMainWindow):
                 self.tampilPesan('Data user tidak boleh kosong, silahkan lengkapi data terlebih dahulu')
         except:
             self.tampilPesan('Terjadi kesalahan pada saat menyimpan user')
+
+    def tampilDataUserTerpilih(self):
+        try:
+            items=self.tblUser.selectedItems()
+            id_user=items[0].text()
+            nama_depan=items[1].text()
+            nama_tengah=items[2].text()
+            nama_belakang=items[3].text()
+            tipe_user=items[4].text()
+            username=items[5].text()
+
+            self.editID.setText(id_user)
+            self.editNamaDepan.setText(nama_depan)
+            self.editNamaTengah.setText(nama_tengah)
+            self.editNamaBelakang.setText(nama_belakang)
+            self.editUsername.setText(username)
+            if tipe_user=="Administrator":
+                self.cmbTipeUser.setCurrentIndex(1)
+            elif tipe_user=="User":
+                self.cmbTipeUser.setCurrentIndex(2)
+            else:
+                self.cmbTipeUser.setCurrentIndex(0)
+        except:
+            self.tampilPesan("Terjadi kesalahan pada saat memilih dan menampilkan data user!")
+        
 if __name__=="__main__":
     app=QApplication(sys.argv)
     form=User()

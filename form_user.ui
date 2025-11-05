@@ -350,6 +350,9 @@ color: rgb(255, 255, 255);</string>
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
     </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
     <column>
      <property name="text">
       <string>ID User</string>
