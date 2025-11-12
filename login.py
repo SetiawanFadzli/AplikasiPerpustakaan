@@ -49,7 +49,8 @@ class login(QMainWindow):
 
                 if len(data_user)==1:
                     self.hapusText()
-                    formutama=FormUtama()
+                    tipe_user=data_user[0][4]
+                    formutama=FormUtama(tipe_user)
                     widget.addWidget(formutama)
                     widget.showMaximized()
                     widget.setWindowTitle('Aplikasi Perpustakaan')

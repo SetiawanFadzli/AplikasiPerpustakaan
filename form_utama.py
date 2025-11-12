@@ -8,9 +8,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMdiSubWindow
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
+from User import *
 
 class FormUtama(QMainWindow):
-    def __init__(self):
+    def __init__(self, tipe_user):
         QMainWindow.__init__(self)
         loadUi('form_utama.ui',self)
 
@@ -54,6 +55,12 @@ class FormUtama(QMainWindow):
         
         logout.triggered.connect(self.logoutuser)
         exitapp.triggered.connect(self.exitApp)
+        data_pengguna.triggered.connect(self.tampilFormDataUser)
+        
+        if tipe_user=="User":
+            data_pengguna.setEnabled(False)
+            data_buku.setEnabled(False)
+            data_anggota.setEnabled(False)
 
     #fungsi menampilkan ktak pesan
     def tampilDialogKonfirmasi(self,pesan):
@@ -78,9 +85,17 @@ class FormUtama(QMainWindow):
         dialog_konfirmasi=self.tampilDialogKonfirmasi('Apakah anda yakin untuk keluar')
         if dialog_konfirmasi==QMessageBox.Ok:
             self.parentWidget().close()
+
+    def tampilFormDataUser(self):
+        form_data_user=User()
+        sub_form=QMdiSubWindow()
+        sub_form.setWidget(form_data_user)
+        sub_form.setFixedSize(881,464)
+        self.mdi.addSubWindow(sub_form)
+        sub_form.show()
         
-##if __name__=="__main__":
- ##   app=QApplication(sys.argv)
- ##   form=FormUtama()
- ##   form.show()
- ##   sys.exit(app.exec_())
+if __name__=="__main__":
+    app=QApplication(sys.argv)
+    form=FormUtama("Administrator")
+    form.show()
+    sys.exit(app.exec_())
