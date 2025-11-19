@@ -72,7 +72,7 @@ if __name__=="__main__":
     widget=QtWidgets.QStackedWidget()
     widget.addWidget(form)
     widget.setMinimumWidth(451)
-    widget.setMaximumHeight(216)
+    widget.setMaximumHeight(516)
     widget.setWindowTitle('Aplikasi Perpustakaan')
     widget.setWindowIcon(QIcon('ICONS/library_logo.png'))
     widget.show()

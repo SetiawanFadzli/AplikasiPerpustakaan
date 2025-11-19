@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QMdiSubWindow
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 from User import *
+from Anggota import *
 
 class FormUtama(QMainWindow):
     def __init__(self, tipe_user):
@@ -56,6 +57,7 @@ class FormUtama(QMainWindow):
         logout.triggered.connect(self.logoutuser)
         exitapp.triggered.connect(self.exitApp)
         data_pengguna.triggered.connect(self.tampilFormDataUser)
+        data_anggota.triggered.connect(self.tampilFormDataAnggota)
         
         if tipe_user=="User":
             data_pengguna.setEnabled(False)
@@ -91,6 +93,14 @@ class FormUtama(QMainWindow):
         sub_form=QMdiSubWindow()
         sub_form.setWidget(form_data_user)
         sub_form.setFixedSize(881,464)
+        self.mdi.addSubWindow(sub_form)
+        sub_form.show()
+
+    def tampilFormDataAnggota(self):
+        form_data_anggota=Anggota()
+        sub_form=QMdiSubWindow()
+        sub_form.setWidget(form_data_anggota)
+        
         self.mdi.addSubWindow(sub_form)
         sub_form.show()
         
